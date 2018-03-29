@@ -1,0 +1,30 @@
+#controls {
+	-fx-background-color: #ebebeb;
+}
+
+.button {
+	-fx-background-color: white;
+	-fx-text-fill: rgba(0, 128, 206, 0.87);
+}
+
+.button:hover {
+	-fx-background-color: rgba(0, 128, 206, 0.87);
+	-fx-text-fill: white;
+}
+
+
+.text-field {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-field:focused {
+    -fx-background-color:white;
+}
+
+.vbox .text {
+	-fx-fill: white;
+}
+
+#overlay {
+	-fx-background-color: rgba(0, 0, 0, 0.5);
+}
