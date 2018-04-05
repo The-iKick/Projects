@@ -31,8 +31,8 @@ public class Main extends Application {
         FullMenu menu = new FullMenu();
 		ImageGrid images = new ImageGrid();	
 		controls = new Controls(root, manager);
-		LabeledProgressBar loadingOverlay = new LabeledProgressBar();
 		
+		LabeledProgressBar loadingOverlay = new LabeledProgressBar();
 		// load in all of the images using a task
 		Task task = manager.loadGrid(JSONParser.generateURLS("rock", 50), () -> {
 			int menuIndex = mainContent.getChildren().indexOf(menu);
@@ -41,12 +41,14 @@ public class Main extends Application {
 			mainContent.getChildren().add(menuIndex+1, manager.getGrid()); // add the new grid
 			manager.startGallery();
 			
-			root.getChildren().remove(loadingOverlay);
+			loadingOverlay.fadeOut((e) -> {
+				root.getChildren().remove(loadingOverlay);
+			}, 500);
 		});
-		loadingOverlay.getBar().progressProperty().bind(task.progressProperty());
 		Thread thread = new Thread(task);
 		thread.setDaemon(true);
 		thread.start();
+		loadingOverlay.getBar().progressProperty().bind(task.progressProperty());
 		
 		// setting and assignment
 		menu.setId("menu");

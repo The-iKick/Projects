@@ -33,7 +33,25 @@ public class FullMenu extends MenuBar {
 					File f = new File("src/dark.css");
 					this.getScene().getStylesheets().clear();
 					this.getScene().getStylesheets().addAll("file:///" + main.getAbsolutePath().replace("\\", "/"), "file:///" + f.getAbsolutePath().replace("\\", "/"));
-				}, true)
+				}, true),
+				
+				radioSubItem("Cherry Bloosom", (e) -> {
+					File f = new File("src/cherryblossom.css");
+					this.getScene().getStylesheets().clear();
+					this.getScene().getStylesheets().addAll("file:///" + main.getAbsolutePath().replace("\\", "/"), "file:///" + f.getAbsolutePath().replace("\\", "/"));
+				}),
+				
+				radioSubItem("Waves", (e) -> {
+					File f = new File("src/Waves.css");
+					this.getScene().getStylesheets().clear();
+					this.getScene().getStylesheets().addAll("file:///" + main.getAbsolutePath().replace("\\", "/"), "file:///" + f.getAbsolutePath().replace("\\", "/"));
+				}),
+				
+				radioSubItem("Grass", (e) -> {
+					File f = new File("src/grass.css");
+					this.getScene().getStylesheets().clear();
+					this.getScene().getStylesheets().addAll("file:///" + main.getAbsolutePath().replace("\\", "/"), "file:///" + f.getAbsolutePath().replace("\\", "/"));
+				})
 			),
 			menuItem("Help",
 				menuSubItem("About", new AboutWindow())

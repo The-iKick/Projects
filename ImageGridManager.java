@@ -1,7 +1,6 @@
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.Node;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -32,7 +31,7 @@ public class ImageGridManager {
 	private final int GRID_COUNT = GRID_COL_COUNT * GRID_ROW_COUNT;
 	
 	Timer timer;
-	String[] imageRotation;
+	ImageData[] imageRotation;
 	
 	int atCol = 0; // for the sake of adding the images, we keep track of the columns
 	int atRow = 0; // and the rows in order to index them correctly
@@ -59,7 +58,7 @@ public class ImageGridManager {
 	 * @param onComplete a function to be called when all images have loaded
 	 * @return the task
 	 */
-	Task loadGrid (String[] urls, Completion onComplete) {
+	Task loadGrid (ImageData[] urls, Completion onComplete) {
 		return new Task<Void>() {
 		    @Override 
 		    public Void call() throws IOException {
@@ -80,7 +79,7 @@ public class ImageGridManager {
 							currentGrid.setId("grid");
 						});
 					}
-					updateProgress(i, 19);
+					updateProgress(i+1, 20);
 				}
 				// the remaining images will go into rotation
 				imageRotation = Arrays.copyOfRange(urls, GRID_COUNT, urls.length);
@@ -108,21 +107,28 @@ public class ImageGridManager {
 		timer.scheduleAtFixedRate(new TimerTask(){
 		    @Override
 		    public void run(){
-		    		Random rand = new Random();
-		    		int randIndex = rand.nextInt(imageRotation.length);
-		    		ImageViewer image = new ImageViewer(imageRotation[randIndex], IMAGE_WIDTH, IMAGE_HEIGHT);
-
-		    		Platform.runLater(() -> {
-		    			int randCol = rand.nextInt(GRID_COL_COUNT);
-		    			int randRow = rand.nextInt(GRID_ROW_COUNT);
-		    			ImageViewer currentImage = (ImageViewer) currentGrid.lookup("#gridItem-" + randCol + "-" + randRow);
-		    			
-		    			imageRotation[randIndex] = currentImage.getUrl();
-		    			currentGrid.getChildren().remove(currentGrid.lookup("#gridItem-" + randCol + "-" + randRow));
-		    			image.setId("gridItem-" + randCol + "-" + randRow);
-		    			
-		    			currentGrid.add(image, randCol, randRow);
-		    		});
+		    		if (imageRotation.length != 0) {
+			    		Random rand = new Random();
+			    		int randIndex = rand.nextInt(imageRotation.length);
+			    		ImageViewer image = new ImageViewer(imageRotation[randIndex], IMAGE_WIDTH, IMAGE_HEIGHT);
+	
+			    		Platform.runLater(() -> {
+			    			int randCol = rand.nextInt(GRID_COL_COUNT);
+			    			int randRow = rand.nextInt(GRID_ROW_COUNT);
+			    			ImageViewer currentImage = (ImageViewer) currentGrid.lookup("#gridItem-" + randCol + "-" + randRow);
+			    			
+			    			// if we are currently hovered over the image then we should not replace it
+			    			if (!currentImage.opened) {
+				    			imageRotation[randIndex] = currentImage.getImage();
+				    			currentGrid.getChildren().remove(currentGrid.lookup("#gridItem-" + randCol + "-" + randRow));
+				    			image.setId("gridItem-" + randCol + "-" + randRow);
+				    			
+				    			currentGrid.add(image, randCol, randRow);
+			    			} else { // try again
+			    				this.run();
+			    			}
+			    		});
+		    		}
 		    }
 		}, 0, 2000);
 	}

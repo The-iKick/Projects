@@ -7,13 +7,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.input.KeyCode;
 import javafx.geometry.Insets;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
 import javafx.concurrent.Task;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import java.util.Random;
 
 /**
  * Represents the Controls that allow us to Pause/Play the gallery and search a query
@@ -28,13 +26,19 @@ public class Controls extends HBox {
 	TextField queryField;
 	ImageGridManager gridManager;
 	
+	String currentTerm = "rock";
+	String[] tryTerms = {"Pop", "Hiphop", "R&B", "Rap", 
+						 "Country", "Soul", "Classic", "Rock", 
+						 "Jazz", "Blues", "Funk", "Reggae",
+						 "Disco", "Punk Rock", "Folk Music"};
+	
 	Controls(StackPane root, ImageGridManager grid) {
 		super();
 		
 		this.gridManager = grid;
 		// center text field
 		queryField = new TextField();
-		queryField.setPromptText("Try searching for \"Pop\"");
+		queryField.setPromptText("Try searching for \"" + pickRandomTerm () + "\"");
 		queryField.setAlignment(Pos.CENTER); // center the text
 		queryField.setOnKeyReleased((event) -> { // allows us to query using the enter butter
 			if(!loading && event.getCode().equals(KeyCode.ENTER)) { 
@@ -77,6 +81,7 @@ public class Controls extends HBox {
 				playing = true;
 			}
 		});
+		playToggle.setId("toggle");
 		return playToggle;
 	}
 	
@@ -98,16 +103,28 @@ public class Controls extends HBox {
 		return update;
 	}
 	
+	private String pickRandomTerm () {
+		Random rand = new Random();
+		int index = rand.nextInt(tryTerms.length);
+		String term = tryTerms[index];
+		
+		if (term.equalsIgnoreCase(currentTerm)) {
+			return pickRandomTerm();
+		}
+		return term;
+	}
+	
 	private void queryImages (StackPane root) {
 		String query = queryField.getText().trim();
 		
+		currentTerm = query;
 		loading = true;
 		if (query.length() > 0) {
 			// append loader
 			LabeledProgressBar loadingOverlay = new LabeledProgressBar();
 			root.getChildren().add(loadingOverlay);
 			
-			String[] urls = JSONParser.generateURLS(query, 50); // generates up to 50 images
+			ImageData[] urls = JSONParser.generateURLS(query, 50); // generates up to 50 images
 			if (urls.length >= 20) { // we need at least 20 URLS to display them
 				gridManager.stopGallery();
 				gridManager = new ImageGridManager(); // reset image manager
@@ -124,8 +141,13 @@ public class Controls extends HBox {
 					mainContent.getChildren().add(menuIndex+1, gridManager.getGrid()); // add the new grid
 					
 					queryField.setText("");
+					queryField.setPromptText("Try searching for \"" + pickRandomTerm () + "\"");
 					if (playing && urls.length > 25) gridManager.startGallery();
-					root.getChildren().remove(loadingOverlay);
+					
+					root.requestFocus();
+					loadingOverlay.fadeOut((e) -> {
+						root.getChildren().remove(loadingOverlay);
+					}, 500);
 					
 					loading = false;
 				});

@@ -1,52 +1,50 @@
 .menu-bar {
-	-fx-background-color: linear-gradient(rgba(170,169,169,1) 0%, rgba(144,144,144,1) 100%);
-	-fx-text-fill: lightgrey;
+	-fx-background-color: linear-gradient(rgba(66,66,66,1) 0%, rgba(43,43,43,1) 100%);
+
+	-fx-text-fill: white;
+	-fx-focused-text-base-color: white;
+	-fx-text-background-color: white;
+	-fx-focused-mark-color: white;
 }
 
-.menu .text {
-	-fx-fill: white;
+.menu > .label {
+    -fx-text-fill: white !important;
 }
 
-.menu {
-	-fx-fill: lightgrey;
-}
-
+/**
+ * Hover color for the menu item text
+ */
 .menu-item .text {
-	-fx-fill: black;
-}
-
-.menu-item:hover .text {
 	-fx-fill: white;
 }
 
+/** Determines the hover color of the checkmark */
+.menu-item {
+	-fx-mark-color: white;
+}
+
+.context-menu {
+	-fx-background-color: rgba(43,43,43,1);
+}
 
 #controls {
-	-fx-background-color: #555555;
+	-fx-background-color: #393939;
 }
 
 .button {
-	-fx-background-color: grey;
-	-fx-text-fill: lightgrey;
+	-fx-background-color: #5e5e5e;
+	-fx-text-fill: #989898;
 }
 
 .button:hover {
-	-fx-background-color: lightgrey;
-	-fx-text-fill: grey;
+	-fx-background-color: #7f7f7f;
+	-fx-text-fill: #3f3f3f;
 }
 
-
 .text-field {
-    -fx-background-color: #878787;
+    -fx-background-color: #4e4e4e;
 }
 
 .text-field:focused {
-    -fx-background-color: #dbdbdb;
-}
-
-#overlay {
-	-fx-background-color: rgba(0, 0, 0, 0.5);
-}
-
-.progress-bar .progress-indicator, .progress-indicator {
-	-fx-progress-color: grey;
+    -fx-background-color: #7d7d7d;
 }
