@@ -1,5 +1,5 @@
 # Arcade
-Arcade is a CSCI1302 (Introduction to Programming in Java II) final project that was developed with the help of Hazim Mohammad. The project consists of a compilation of two very popular retro games: Tetris and Minesweeper. Keeping true to the game, both were developed to nearly 100% authenticity when considering funcationality. Minesweeper remains true to its origins both in design and functionality.
+Arcade is a CSCI1302 (Introduction to Programming in Java II) final project that was developed with the help of Hazim Mohamed. The project consists of a compilation of two very popular retro games: Tetris and Minesweeper. Keeping true to the game, both were developed to nearly 100% authenticity when considering funcationality. Minesweeper remains true to its origins both in design and functionality.
 
 ## Compiling and Running
 
@@ -26,7 +26,7 @@ This will compile and run the program.
 ## Authors
 
 * **Shawn Holman** - *Frontend and Backend* - [The_iKick](https://github.com/The-iKick)
-* **Hazim Mohammad** - *Backend* 
+* **Hazim Mohamed** - *Backend* [HazimMohamed] (https://github.com/HazimMohamed)
 
 ## License
 

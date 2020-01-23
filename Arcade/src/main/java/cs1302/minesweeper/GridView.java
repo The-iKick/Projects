@@ -2,7 +2,7 @@ package cs1302.minesweeper;
 
 import javafx.scene.layout.GridPane;
 
-public class GridView extends GridPane{
+public class GridView extends GridPane {
 	int width;
 	int height;
 	

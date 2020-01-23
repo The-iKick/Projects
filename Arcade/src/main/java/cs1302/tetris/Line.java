@@ -12,6 +12,4 @@ public class Line extends Shape {
 		setPivot(shapeBoxes[1]);
 		setColor("red");
 	}
-	
-	
 }
