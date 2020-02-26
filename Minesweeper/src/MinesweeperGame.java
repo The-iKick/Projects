@@ -188,9 +188,7 @@ public class MinesweeperGame {
 
 	private int numOfDigits(int num) {
 		int count = 0;
-		while(num != 0)
-		{
-			// num = num/10
+		while(num != 0) {
 			num /= 10;
 			++count;
 		}
@@ -198,17 +196,10 @@ public class MinesweeperGame {
 	}
 
 	private void printMineField(int round, boolean nofog) {
-		/*
-		 5 => 1
-		 12 => 2
-		 101 =>
-
-		 */
-
 		int rowSpacesNeeded = numOfDigits(rows) + 1;
 		int colSpacesNeeded = numOfDigits(cols) + 1;
 
-		System.out.println(colSpacesNeeded + " << spaces");
+		System.out.println(rowSpacesNeeded);
 		String rowNumberFormat = "%" + rowSpacesNeeded + "d |";
 		String colNumberFormat = "%" + colSpacesNeeded + "d  ";
 		String characterFormat = "%" + colSpacesNeeded + "s |";
@@ -221,7 +212,7 @@ public class MinesweeperGame {
 			for (int j = 0; j < cols; j++) {
 				int value = board[i][j];
 				String character = "";
-				
+
 				if (value == -1) {
 					character = "0";
 				} else if (value >= 1 && value <= 8) {
@@ -231,7 +222,7 @@ public class MinesweeperGame {
 				} else if (value == 10) {
 					character = "F";
 				}
-				
+
 				if (nofog) {
 					boolean isMine = mines[i][j];
 
@@ -249,7 +240,7 @@ public class MinesweeperGame {
 			System.out.println();
 		}
 
-		System.out.printf("%"+(rowSpacesNeeded+1)+"s ", "");
+		System.out.printf("%"+(rowSpacesNeeded)+"s  ", "");
 		for (int j = 0; j < cols; j++) {
 			System.out.printf(colNumberFormat, j);
 		}
