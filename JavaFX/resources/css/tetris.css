@@ -1,0 +1,126 @@
+#left > StackPane {
+	-fx-background-color: black;
+	-fx-border-color: white;
+	-fx-border-insets: 10;
+	-fx-border-width: 5;
+	-fx-border-style: dashed;
+}
+
+#next-shape {
+	-fx-background-color: black;
+	-fx-border-color: #444;
+	-fx-border-insets: 5;
+	-fx-border-width: 3;
+	-fx-border-style: solid;
+	-fx-background-insets: 8;
+}
+
+#right {
+	-fx-background-color: #f2f2f2;
+	-fx-padding: 10px 10px 10px 10px;
+}
+
+Text {
+	-fx-font-family: 'Ariel';
+    -fx-font-size: 1.666em;
+}
+
+.scoreboard-number {
+	-fx-padding: 5px;
+	-fx-alignment: center;
+}
+
+.icons {
+	-fx-background-color: #f0f0f0;
+	-fx-padding: 10;
+
+    -fx-pref-width: 70px;
+    -fx-border-color: grey;
+	-fx-border-insets: 0;
+	-fx-border-width: 1;
+	-fx-border-style: solid;
+	-fx-alignment: center;
+	-fx-cursor: hand;
+}
+
+.icons:hover {
+	-fx-background-color: #dedede;
+}
+
+#right .label {
+	-fx-background-color: #ececec;
+	-fx-text-fill: red;
+    -fx-font-family: 'Ariel';
+    -fx-font-size: 1.4em;
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    -fx-background-insets: -2 -10 -2 -10;
+    -fx-pref-width: 160px;
+    -fx-padding: 3px 0;
+}
+
+#left .label, #instructions .label {
+	
+    -fx-text-fill: white;
+    -fx-fill:white;
+}
+
+#instructions .label {
+	-fx-font-size: 13px;
+}
+
+#instructions ImageView {
+	-fx-min-height: 80px;
+	-fx-min-width: 80px;
+}
+
+#start-label {
+	-fx-font-size: 40px; 
+	-fx-font-weight:bold; 
+	-fx-background-color: red;
+	-fx-background-radius: 5;
+	-fx-padding: 2px 4px;
+}
+
+.highscore-table {
+	-fx-alignment: center;
+	-fx-spacing: 10px;
+    -fx-background-insets: 0 40 0 40;
+	-fx-background-color: white;
+}
+
+.text-field {
+	 -fx-background-color: #1d1d1d;
+	-fx-max-width: 88;
+	-fx-padding: 0 5px;
+	-fx-font-size: 30px;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+
+    -fx-box-border: none;
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+    -fx-text-box-border: -fx-control-inner-background;
+    -fx-border-width: -1;
+    -fx-alignment:center;
+}
+
+#instructions {
+
+	-fx-text-fill: white;
+}
+.button {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 9.5 10;
+    -fx-width: 50;
+    -fx-cursor: hand;
+	-fx-background-color: #cc0000;
+	-fx-text-fill: white;
+}
+
+.button:hover {
+	-fx-background-color: #daa8a8;
+	-fx-text-fill: #5b5b5b;
+}

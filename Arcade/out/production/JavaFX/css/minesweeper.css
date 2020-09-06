@@ -1,0 +1,7 @@
+
+.highscore-table {
+	-fx-alignment: center;
+	-fx-spacing: 10px;
+    -fx-background-insets: 0 40 0 40;
+	-fx-background-color: white;
+}

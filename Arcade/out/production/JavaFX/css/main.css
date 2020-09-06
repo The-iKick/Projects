@@ -1,0 +1,8 @@
+.pane {
+	-fx-cursor: hand;
+}
+.text {
+	-fx-fill: white;
+	-fx-opacity: 0;
+	-fx-font-size: 30px;
+}

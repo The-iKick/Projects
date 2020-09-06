@@ -77,7 +77,7 @@ public class FtpClient {
                             String fileCheck = Utility.checkFile(sections[1]);
 
                             if (!fileCheck.equals("ok")) {
-                                print(fileCheck + "\n", onSeperateThread);
+                                print(fileCheck, onSeperateThread);
                                 return COMMAND_TRAFFIC.CONTINUED;
                             }
 
@@ -209,14 +209,6 @@ public class FtpClient {
         DataOutputStream nPortOut = socket.getOutputStream();
         String absolutePath = path;
         File file = new File(path);
-
-        if (!file.exists()) {
-            throw new IOException("stat " + absolutePath + ": No such file or directory");
-        }
-
-        if (file.isDirectory()) {
-            throw new IOException(absolutePath + "/ is not a regular file");
-        }
 
         boolean sent = Utility.sendFile(file, nPortOut, commandId, commandIds);
 
